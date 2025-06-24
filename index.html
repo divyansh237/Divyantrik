@@ -1,0 +1,175 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divyantrik | Divyanshu's Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    body {
+      background: #080808;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    canvas {
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+    }
+    header h1 {
+      font-size: 3em;
+      color: #0ff;
+      text-shadow: 0 0 15px #0ff;
+    }
+    header .typing {
+      font-size: 1.2em;
+      color: #ccc;
+      margin-top: 10px;
+    }
+    .section {
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .section h2 {
+      font-size: 2em;
+      margin-bottom: 30px;
+      color: #0f0;
+    }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #0ff;
+      border-radius: 12px;
+      padding: 20px;
+      width: 260px;
+      backdrop-filter: blur(5px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: scale(1.05) rotateZ(1deg);
+      box-shadow: 0 0 20px #0ff;
+    }
+    .card a {
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .whatsapp-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      text-decoration: none;
+      box-shadow: 0 0 10px #25D366;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0ff;
+      color: #000;
+      border-radius: 50%;
+      padding: 12px;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 10px #0ff;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+  <header>
+    <h1>Divyantrik</h1>
+    <div class="typing" id="typing-text"></div>
+  </header>  <section class="section" data-aos="fade-up">
+    <h2>Web Projects</h2>
+    <div class="cards">
+      <div class="card"><a href="https://divyansh237.github.io/Sweeto/" target="_blank">Sweeto</a></div>
+      <div class="card"><a href="https://divyansh237.github.io/GlowBiz/" target="_blank">GlowBiz</a></div>
+    </div>
+    <a class="whatsapp-btn" href="https://wa.me/917067282100" target="_blank">Order via WhatsApp</a>
+  </section>  <section class="section" data-aos="fade-up">
+    <h2>Games</h2>
+    <div class="cards">
+      <div class="card"><a href="https://divyansh237.github.io/flying_bird_game/" target="_blank">Flying Bird Game</a></div>
+      <div class="card"><a href="https://divyansh237.github.io/treasure-hunt/" target="_blank">Treasure Hunt</a></div>
+      <div class="card"><a href="https://divyansh237.github.io/Tic-tac-toe/" target="_blank">Tic Tac Toe</a></div>
+    </div>
+    <a class="whatsapp-btn" href="https://wa.me/917067282100" target="_blank">Order via WhatsApp</a>
+  </section>  <div class="back-to-top" onclick="scrollToTop()">⬆</div>  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>  <script>
+    AOS.init();
+
+    const text = "Hi, I'm Divyanshu — A Creative Web & Game Developer 🚀";
+    let i = 0;
+    const typing = document.getElementById("typing-text");
+    function typeText() {
+      if (i < text.length) {
+        typing.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeText, 60);
+      }
+    }
+    window.onload = typeText;
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    // Animated stars
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const stars = [];
+    for (let i = 0; i < 200; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5,
+        d: Math.random() * 50
+      });
+    }
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "white";
+      for (let i = 0; i < stars.length; i++) {
+        const s = stars[i];
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    function animateStars() {
+      for (let i = 0; i < stars.length; i++) {
+        stars[i].y += 0.15;
+        if (stars[i].y > canvas.height) {
+          stars[i].y = 0;
+          stars[i].x = Math.random() * canvas.width;
+        }
+      }
+      drawStars();
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+  </script></body>
+</html>
